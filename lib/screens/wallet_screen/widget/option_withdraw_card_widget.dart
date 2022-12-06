@@ -19,7 +19,7 @@ class _OptionWithdrawCardWidgetState extends State<OptionWithdrawCardWidget> {
   @override
   Widget build(BuildContext context) {
     return  Column(
-      children: List.generate(4, (index) {
+      children: List.generate(2, (index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Container(
@@ -94,7 +94,7 @@ class _OptionWithdrawCardWidgetState extends State<OptionWithdrawCardWidget> {
               ],
             ),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(10),
               border: Border.all(
                 color: AppColor.orange,
                 width: 1,

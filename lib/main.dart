@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:resturant_app/screens/add_restaurant_screen/add_restaurant_page.dart';
+import 'package:resturant_app/screens/authentication_sreen/onboarding_page.dart';
+import 'package:resturant_app/screens/bank_screen/bank_info_page.dart';
 import 'package:resturant_app/screens/dine_in_screen/dine_in_page.dart';
+import 'package:resturant_app/screens/bank_screen/add_bank_boarding_page.dart';
 import 'package:resturant_app/screens/offers_screen/offers_page.dart';
 import 'package:resturant_app/screens/order_screen/order_page.dart';
 import 'package:resturant_app/screens/products_screen/products_page.dart';
+import 'package:resturant_app/screens/profile_screen/profile_page.dart';
 import 'package:resturant_app/screens/requests_screen/requests_page.dart';
 import 'package:resturant_app/screens/wallet_screen/wallet_page.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:resturant_app/utils/routes/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,13 +23,44 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: WalletPage(),
-    );
+    return
+    //   MaterialApp(
+    //   title: 'Flutter Demo',
+    //   theme: ThemeData(
+    //     primarySwatch: Colors.blue,
+    //   ),
+    //   home: WalletPage(),
+    // );
+      ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context , child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            routes:  {
+              Routes.products: (context) => ProductsPage(),
+              Routes.order: (context) => OrdersPage(),
+              Routes.dineIn: (context) => DineInPage(),
+              Routes.addRest: (context) => AddingRestaurant(),
+              Routes.wallet: (context) => WalletPage(),
+              Routes.profile: (context) => ProfilePage(),
+              Routes.offers: (context) => OffersPage(),
+              Routes.requests: (context) => RequestsPage(),
+              Routes.addBank: (context) => AddBankBoardingPage(),
+              Routes.bankDetails: (context) => BankInfoPage(),
+            },
+            // You can use the library anywhere in the app even in theme
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+              // textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
+            ),
+            home: child,
+          );
+        },
+        child: OnBoarding(),
+      );
   }
 }
 

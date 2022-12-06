@@ -1,5 +1,9 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:resturant_app/screens/dine_in_screen/widgets/textFeild_widget.dart';
 import 'package:resturant_app/screens/wallet_screen/widget/option_withdraw_card_widget.dart';
 import 'package:resturant_app/screens/wallet_screen/widget/wallet_card_widget.dart';
 import 'package:resturant_app/screens/wallet_screen/widget/wallet_list_widget.dart';
@@ -7,9 +11,11 @@ import 'package:resturant_app/screens/wallet_screen/widget/withdraw_amount_card.
 
 import '../../const/colors.dart';
 import '../../utils/helper.dart';
+import '../products_screen/widgets/app_drawer_widget.dart';
 
 class WalletPage extends StatefulWidget {
   const WalletPage({Key? key}) : super(key: key);
+  static const routeName = "/wallet";
 
   @override
   State<WalletPage> createState() => _WalletPageState();
@@ -24,21 +30,34 @@ class _WalletPageState extends State<WalletPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.backgroundWhite,
+      backgroundColor: Colors.white,
+      //Color(0xfffafafc),
+      drawer: AppDrawer(),
       appBar: AppBar(
         backgroundColor: AppColor.orange,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.menu,
-            size: 15,
-          ),
+        // leading: IconButton(
+        //   onPressed: () {},
+        //   icon: Icon(
+        //     Icons.menu,
+        //     size: 15,
+        //   ),
+        // ),
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(EvaIcons.menu),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
         ),
         title: Text(
           'Wallet',
-          style: TextStyle(
-            fontSize: 18,
-          ),
+          style: TextStyle(fontSize: 16.sp, color: Colors.white),
         ),
         centerTitle: true,
         bottom: PreferredSize(
@@ -54,15 +73,17 @@ class _WalletPageState extends State<WalletPage> {
                   Text(
                     'TOTAL BALANCE',
                     style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 16.sp,
                         color: Colors.white,
-                        fontWeight: FontWeight.w500),
+                        fontWeight: FontWeight.w700),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Text(
                     '\$631.00',
                     style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18.sp,
                         color: Colors.white,
                         fontWeight: FontWeight.w700),
                   ),
@@ -73,88 +94,87 @@ class _WalletPageState extends State<WalletPage> {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.only(top: 10,right: 20,left: 20),
-        height: double.infinity,
-        color: Colors.white,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Withdraw History',
-              style: TextStyle(
-                  fontSize: 14,
-                  color: AppColor.primary,
-                  fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Expanded(
-              child: Container(
-                //height: Helper.getScreenHeight(context)*0.59,
-                child: WalletListWidget(),
-              ),
-            ),
-            Container(
-              height: 60,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-                MaterialButton(
-                  height: 52,
-                  minWidth: Helper.getScreenWidth(context)*0.42,
-                  padding: EdgeInsets.symmetric(vertical: 14),
-                  onPressed: () {},
-                  color: AppColor.orange,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  child: Text(
-                    'CONTINUE',
-                    style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-                Container(
-                  height: 52,
-                  width: Helper.getScreenWidth(context)*0.42,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      selectPaymentOption(context);
-                    },
-                    style: OutlinedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)
-                      ),
-                      side: BorderSide(width: 1, color: AppColor.orange,),
-                      padding: EdgeInsets.symmetric(
-                        vertical: 5,
-                        horizontal: 15,
-                      ),
-                    ),
-                    child: Text(
-                      'ACCEPT',
-                      style: TextStyle(
-                          color: AppColor.orange,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                ),
-            ],
-            ),
-              ),)
+            // Text(
+            //   'Withdraw History',
+            //   style: TextStyle(
+            //       fontSize: 16.sp,
+            //       color: AppColor.primary,
+            //       fontWeight: FontWeight.w600),
+            // ),
 
+            const Expanded(
+              child: WalletListWidget(),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Container(
+                height: 60,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      MaterialButton(
+                        height: 52,
+                        minWidth: Helper.getScreenWidth(context) * 0.44,
+                        padding: EdgeInsets.symmetric(vertical: 14),
+                        onPressed: () {
+                          withdraw();
+                        },
+                        color: AppColor.orange,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        child: const Text(
+                          'WITHDRAW',
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      Container(
+                        height: 52,
+                        width: Helper.getScreenWidth(context) * 0.44,
+                        child: OutlinedButton(
+                          onPressed: () {
+                            selectPaymentOption(context);
+                          },
+                          style: OutlinedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            side: const BorderSide(
+                              width: 1,
+                              color: AppColor.orange,
+                            ),
+                            padding: EdgeInsets.symmetric(
+                              vertical: 5,
+                              horizontal: 15,
+                            ),
+                          ),
+                          child: const Text(
+                            'ACCEPT',
+                            style: TextStyle(
+                                color: AppColor.orange,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
     );
   }
 
-  withdraw(){
+  withdraw() {
     return showModalBottomSheet(
         isScrollControlled: true,
         shape: const RoundedRectangleBorder(
@@ -166,76 +186,173 @@ class _WalletPageState extends State<WalletPage> {
         context: context,
         builder: (context) {
           return Container(
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Withdraw',
-                    style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600, color: AppColor.primary),
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+            height: MediaQuery.of(context).size.height * 0.65,
+            width: MediaQuery.of(context).size.width,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                   SizedBox(
+                    height: 5.h,
                   ),
-                ),
-                const SizedBox(height: 20,),
-                Container(
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Bank of America Carp',
-                            style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700, color: AppColor.primary),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Withdraw',
+                      style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w600,
+                          color: AppColor.primary),
+                    ),
+                  ),
+                   SizedBox(
+                    height: 20.h,
+                  ),
+                  Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Bank of America Carp',
+                              style: TextStyle(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColor.orange),
+                            ),
+                            FaIcon(
+                              FontAwesomeIcons.buildingColumns,
+                              size: 25,
+                              color: AppColor.orange,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          '091000019',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: AppColor.primary),
+                        ),
+                        SizedBox(
+                          height: 30.h,
+                        ),
+                        Text(
+                          'Jonvikson Geller',
+                          style: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w500,
+                              color: AppColor.primary),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'ACIOVPSGO45',
+                              style: TextStyle(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColor.primary),
+                            ),
+                            Text(
+                              'Los Angeles',
+                              style: TextStyle(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColor.primary),
+                            ),
+                            //SizedBox(height: 10.h),
+                          ],
+                        ),
+                      ],
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(
+                          width: 2,
+                          color: Colors.deepOrange.shade700,
+                        )),
+                  ),
+                   SizedBox(
+                    height: 20.h,
+                  ),
+                  Text(
+                    'Add Withdrawal Amount',
+                    style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w500,
+                        color: AppColor.primary),
+                  ),
+                  SizedBox(height: 10.h,),
+                  Container(
+                    height: 45.h,
+                      padding: EdgeInsets.only(left: 20.w,),
+                      decoration: BoxDecoration(
+                       borderRadius: BorderRadius.circular(4),
+                          border: Border.all(color: AppColor.secondary),
+                        color: Color(0xffFFFFFF),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color.fromRGBO(0, 0, 0, 0.25),
+                            offset: Offset(0, 1),
+                            blurRadius: 4.0,
+                            spreadRadius: 1, // Shadow position
                           ),
-                          Icon(Icons.home_filled,size: 30,color: AppColor.orange,),
                         ],
                       ),
-                      const SizedBox(height: 10,),
-                      Text(
-                        '091000019',
-                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600, color: AppColor.primary),
-                      ),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
 
-                      const SizedBox(height: 30,),
-                      Text(
-                        'Jonvikson Geller',
-                        style: TextStyle(fontSize: 16,fontWeight: FontWeight.w400, color: AppColor.secondary),
-                      ),
-                      const SizedBox(height: 10,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('ACIOVPSGO45JRS',
-                            style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600, color: AppColor.primary),
-                          ),
-                          Text(
-                            'Los Angeles',
-                            style: TextStyle(fontSize: 16,fontWeight: FontWeight.w400, color: AppColor.secondary),
-                          ),
-                        ],
-                      ),
+                          //contentPadding: EdgeInsets.symmetric(horizontal: 20.w),
+                          icon: Text("\$" ,style: TextStyle(
+                              color: AppColor.primary,
+                              fontSize: 22.sp,
+                              fontWeight: FontWeight.w600
+                          ), ),
+                        ),
+                        style: TextStyle(
+                          color: AppColor.orange,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w600
+                        ),
 
-                      const SizedBox(height: 30,),
-                      Text(
-                        'Add Withdrawal Amount',
-                        style: TextStyle(fontSize: 16,fontWeight: FontWeight.w400, color: AppColor.secondary),
-                      ),
-
-                    ],
+                      )
                   ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(
-                      width: 2,
-                      color: Colors.deepOrange.shade700,
-                    )
+                  SizedBox(height: 20.h,),
+                  MaterialButton(
+                    minWidth: double.infinity,
+                    padding: EdgeInsets.symmetric(vertical: 13.h),
+                    onPressed: () {},
+                    color: AppColor.orange,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    child: Text(
+                      'WITHDRAW',
+                      style: TextStyle(
+                          fontSize: 14.sp,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
-        }
-    );
+        });
   }
+
   selectPaymentOption(BuildContext context) {
     return showModalBottomSheet(
         isScrollControlled: true,
@@ -248,7 +365,7 @@ class _WalletPageState extends State<WalletPage> {
         context: context,
         builder: (context) {
           return Container(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             height: MediaQuery.of(context).size.height * 0.8,
             width: MediaQuery.of(context).size.width,
             child: SingleChildScrollView(
@@ -263,7 +380,7 @@ class _WalletPageState extends State<WalletPage> {
                         Text(
                           'Topup Wallet',
                           style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 15,
                               color: AppColor.primary,
                               fontWeight: FontWeight.w600),
                         ),
@@ -274,11 +391,11 @@ class _WalletPageState extends State<WalletPage> {
                           'Add Topup Amount',
                           style: TextStyle(
                               fontSize: 14,
-                              color: AppColor.secondary,
-                              fontWeight: FontWeight.w400),
+                              color: AppColor.primary,
+                              fontWeight: FontWeight.w500),
                         ),
                         const SizedBox(
-                          height: 5,
+                          height: 10,
                         ),
                         WithdrawAmountCardWidget(),
                         const SizedBox(
@@ -287,9 +404,9 @@ class _WalletPageState extends State<WalletPage> {
                         Text(
                           'Select Payment Option',
                           style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 16,
                               color: AppColor.primary,
-                              fontWeight: FontWeight.w600),
+                              fontWeight: FontWeight.w500),
                         ),
                         const SizedBox(
                           height: 15,
@@ -315,12 +432,12 @@ class _WalletPageState extends State<WalletPage> {
                   ),
                   MaterialButton(
                     minWidth: double.infinity,
-                    padding: EdgeInsets.symmetric(vertical: 10),
+                    padding: EdgeInsets.symmetric(vertical: 13.h),
                     onPressed: () {},
                     color: AppColor.orange,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Text(
+                        borderRadius: BorderRadius.circular(5)),
+                    child: const Text(
                       'CONTINUE',
                       style: TextStyle(
                           fontSize: 14,
