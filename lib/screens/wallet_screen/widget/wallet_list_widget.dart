@@ -24,7 +24,7 @@ class _WalletListWidgetState extends State<WalletListWidget> {
           return WalletCardWidget();
         },
         separatorBuilder: (context, index) => const SizedBox(
-          height: 10,
+          height: 5,
         ),
         itemCount: 10);
   }

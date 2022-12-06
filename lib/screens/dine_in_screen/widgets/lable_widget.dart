@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:resturant_app/const/colors.dart';
 
 class Lable extends StatelessWidget {
@@ -9,6 +9,12 @@ class Lable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('${lable}',style: TextStyle(fontSize: 16,color: AppColor.secondary,fontWeight: FontWeight.w500),);
+    return Text(
+      lable,
+      style: TextStyle(
+          fontSize: 15.sp,
+          color: AppColor.secondary,
+          fontWeight: FontWeight.w500),
+    );
   }
 }

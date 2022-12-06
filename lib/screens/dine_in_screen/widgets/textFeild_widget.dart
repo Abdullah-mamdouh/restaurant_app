@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:resturant_app/const/colors.dart';
 
 class TextFieldClass extends StatelessWidget {
@@ -18,7 +19,8 @@ class TextFieldClass extends StatelessWidget {
         textDirection: TextDirection.ltr,
         controller: controller,
         style: TextStyle(
-          fontSize: 15.0,
+          fontSize: 14.0.sp,
+          fontWeight: FontWeight.w400
         ),
         validator: (value) {
           if (value == null || value.isEmpty) {
@@ -33,7 +35,7 @@ class TextFieldClass extends StatelessWidget {
           //fillColor: Colors.red,filled: true,
           //contentPadding: EdgeInsets.symmetric(horizontal: 18),
           hintText: '${hintText}',
-          hintStyle: TextStyle(color: AppColor.primary, fontSize: 16,),
+          hintStyle: TextStyle(color: Colors.black, fontSize: 15.sp,fontWeight: FontWeight.w500),
           border:  UnderlineInputBorder(
             borderSide: BorderSide(color: AppColor.placeholder,width: 0.4), //<-- SEE HERE
           ),

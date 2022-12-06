@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:resturant_app/const/colors.dart';
 import 'package:resturant_app/utils/widgets/divider_widget.dart';
 
@@ -8,21 +8,22 @@ import 'lable_widget.dart';
 class TimeWidget extends StatefulWidget {
   TimeWidget({Key? key, required this.controller}) : super(key: key);
   TextEditingController? controller;
+
   @override
   State<TimeWidget> createState() => _TimeWidgetState();
 }
 
 class _TimeWidgetState extends State<TimeWidget> {
-
-  TimeOfDay? time ;
+  TimeOfDay? time;
 
   @override
   void initState() {
     time = TimeOfDay.now();
     widget.controller!.text = //DateFormat("HH:mm ").format(time).toString();//
-     '${time!.hour}:${time!.minute} ${(time!.period.name).toUpperCase()}';
+        '${time!.hour}:${time!.minute} ${(time!.period.name).toUpperCase()}';
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -30,12 +31,12 @@ class _TimeWidgetState extends State<TimeWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GestureDetector(
-          onTap: (){
+          onTap: () {
             getTime(context);
           },
           child: Container(
             //padding: EdgeInsets.all(16),
-            width: w*0.4,
+            width: w * 0.4,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
             ),
@@ -44,12 +45,20 @@ class _TimeWidgetState extends State<TimeWidget> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('${widget.controller!.text}',style: TextStyle(color: AppColor.primary),),
-                    Icon(Icons.keyboard_arrow_down,color: AppColor.primary),
+                    Text(
+                      '${widget.controller!.text}',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    Icon(Icons.keyboard_arrow_down, color: AppColor.primary),
                   ],
                 ),
-                const SizedBox(height: 5,),
-                Card(elevation:15,child: DividerWidget()),
+                const SizedBox(
+                  height: 5,
+                ),
+                Card(elevation: 15, child: DividerWidget()),
               ],
             ),
           ),
@@ -59,14 +68,16 @@ class _TimeWidgetState extends State<TimeWidget> {
   }
 
   getTime(BuildContext context) async {
-
-    TimeOfDay? timeOfDay = await showTimePicker(context: context, initialTime: TimeOfDay.now(),);
-    print (timeOfDay);
+    TimeOfDay? timeOfDay = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+    print(timeOfDay);
     //if (timeOfDay != null && timeOfDay != this.time)
-      setState(() {
-        this.time = timeOfDay;
-        widget.controller!.text = '${time!.hour}:${time!.minute} ${(time!.period.name).toUpperCase()}';
-      });
-
+    setState(() {
+      this.time = timeOfDay;
+      widget.controller!.text =
+          '${time!.hour}:${time!.minute} ${(time!.period.name).toUpperCase()}';
+    });
   }
 }
