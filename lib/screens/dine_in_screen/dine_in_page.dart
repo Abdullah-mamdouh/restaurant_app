@@ -218,10 +218,11 @@ class _DineInPageState extends State<DineInPage> {
         ),
       ),
 
-      bottomNavigationBar: Padding(
+      bottomNavigationBar:
+      Padding(
         padding:  EdgeInsets.symmetric(horizontal: 20.w,vertical: 5.h),
         child: MaterialButton(
-          minWidth: double.infinity,
+          minWidth: double.infinity,height: 45,
           padding: EdgeInsets.symmetric(vertical: 13.h),
           onPressed: () {},
           color: AppColor.orange,

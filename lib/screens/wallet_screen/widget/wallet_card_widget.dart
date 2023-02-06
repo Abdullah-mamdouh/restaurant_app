@@ -30,7 +30,7 @@ class _WalletCardWidgetState extends State<WalletCardWidget> {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    backgroundColor: Color(0xFFfff0eb),
+                    backgroundColor: Colors.orange[100],//Color(0xFFfff0eb),
                     child: Icon(
                       Icons.account_balance_wallet_rounded,
                       color: AppColor.orange,

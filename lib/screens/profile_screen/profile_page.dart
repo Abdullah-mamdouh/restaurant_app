@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 
 import '../../const/colors.dart';
+import '../../utils/helper.dart';
 import '../products_screen/widgets/app_drawer_widget.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -58,11 +59,7 @@ class ProfilePage extends StatelessWidget {
                       fit: StackFit.expand,
                       children: [
                         CircleAvatar(
-                          backgroundImage: NetworkImage(
-                            'https://pixel.nymag.com/imgs/daily/vulture/2017/06/14/14-tom-cruise.w700.h700.jpg',
-                            // BlocProvider.of<ProfileCubit>(context).imageURL
-                            //"http://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg-1024x683.jpg",
-                          ),
+                          backgroundImage: AssetImage(Helper.getAssetName('user.jpg', 'real')),
                         ),
                         Positioned(
                             bottom: 0,
@@ -153,7 +150,7 @@ class ProfilePage extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(22),
                   child: Container(
-                    height: 35.h,
+                    height: 40.h,
                     width: double.infinity,
                     //color: Colors.white,
                     child: ElevatedButton(
