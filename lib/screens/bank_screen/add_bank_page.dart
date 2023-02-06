@@ -101,7 +101,7 @@ class AddBankPage extends StatelessWidget {
               SizedBox(height: 15.h,),
 
               MaterialButton(
-            minWidth: double.infinity,
+            minWidth: double.infinity, height: 45,
             padding: EdgeInsets.symmetric(vertical: 13.h),
             onPressed: () {},
             color: AppColor.orange,

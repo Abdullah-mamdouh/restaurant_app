@@ -36,9 +36,8 @@ class AppDrawer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     CircleAvatar(
-                      backgroundImage: NetworkImage(
-                  'https://img.redro.pl/naklejki/user-profile-icon-vector-avatar-portrait-symbol-flat-shape-person-sign-logo-black-silhouette-isolated-on-white-background-700-253134053.jpg',
-                      ),radius: 30.h,
+                      backgroundImage: AssetImage(Helper.getAssetName('user.jpg', 'real')),
+                      radius: 30.h,
                     ),
                     SizedBox(
                       height: 5.h,
@@ -70,27 +69,27 @@ class AppDrawer extends StatelessWidget {
           ///
           ///
           _createDrawerItem(icon: FontAwesomeIcons.bowlFood, text: 'Orders',onTap: () =>
-              Navigator.pushReplacementNamed(context, Routes.order)),
+              Navigator.pushNamed(context, Routes.order)),
           _createDrawerItem(icon: Icons.restaurant_menu_rounded, text: 'Dine-In Requests',onTap: () =>
-              Navigator.pushReplacementNamed(context, Routes.requests),),
+              Navigator.pushNamed(context, Routes.requests),),
           _createDrawerItem(icon: FontAwesomeIcons.utensils, text: 'Add Restaurant', onTap: () =>
-              Navigator.pushReplacementNamed(context, Routes.addRest),),
+              Navigator.pushNamed(context, Routes.addRest),),
           _createDrawerItem(icon: FontAwesomeIcons.utensils, text: 'Dine In',onTap: () =>
-              Navigator.pushReplacementNamed(context, Routes.dineIn),),
+              Navigator.pushNamed(context, Routes.dineIn),),
           _createDrawerItem(icon: FontAwesomeIcons.cheese, text: 'Manage Products', onTap: () =>
-              Navigator.pushReplacementNamed(context, Routes.products),),
+              Navigator.pushNamed(context, Routes.products),),
           _createDrawerItem(icon: Icons.discount_outlined, text: 'Offers',onTap: () =>
-              Navigator.pushReplacementNamed(context, Routes.offers)),
+              Navigator.pushNamed(context, Routes.offers)),
           _createDrawerItem(icon: FontAwesomeIcons.user, text: 'Profile',onTap: () =>
-              Navigator.pushReplacementNamed(context, Routes.profile),),
+              Navigator.pushNamed(context, Routes.profile),),
           // Divider(),
           _createDrawerItem(
               icon: Icons.account_balance_wallet_rounded, text: 'Wallet',onTap: () =>
-              Navigator.pushReplacementNamed(context, Routes.wallet)),
+              Navigator.pushNamed(context, Routes.wallet)),
           _createDrawerItem(icon:Icons.account_balance, text: ' Add Bank',onTap: () =>
-              Navigator.pushReplacementNamed(context, Routes.addBank),),
+              Navigator.pushNamed(context, Routes.addBank),),
           _createDrawerItem(icon:Icons.account_balance, text: 'Bank Details',onTap: () =>
-              Navigator.pushReplacementNamed(context, Routes.bankDetails),),
+              Navigator.pushNamed(context, Routes.bankDetails),),
 
           _createDrawerItem(icon: FontAwesomeIcons.globe, text: 'Language',onTap: (){}),
           _createDrawerItem(icon: FontAwesomeIcons.arrowRightFromBracket, text: 'Log out',onTap: (){}),

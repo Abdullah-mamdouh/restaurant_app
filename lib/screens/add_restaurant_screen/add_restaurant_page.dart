@@ -79,10 +79,10 @@ final services = [
               DropDownMultiSelect(
 
 
-                icon: const Icon(
+                /*icon: const Icon(
                   Icons.keyboard_arrow_down,
                   color: AppColor.primary, //constantColors.whiteColor,
-                ),
+                ),*/
                 onChanged: (List<String> x) {
                   setState(() {
                     selected =x;
@@ -241,7 +241,7 @@ final services = [
       bottomNavigationBar: Padding(
         padding:  EdgeInsets.symmetric(horizontal: 15.w,vertical: 5.h),
         child: MaterialButton(
-          minWidth: double.infinity,
+          minWidth: double.infinity,height: 45,
           padding: EdgeInsets.symmetric(vertical: 13.h),
           onPressed: () {},
           color: AppColor.orange,
