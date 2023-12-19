@@ -21,12 +21,13 @@ class LoginOrSignupWith extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        shape: const StadiumBorder(),
-        fixedSize: Size(MediaQuery.of(context).size.width, 45.h),
-        backgroundColor: backgroundColor,
-        shadowColor: Colors.black,
-        elevation: 0,
+      style: ButtonStyle(
+          shape: MaterialStateProperty.all(const StadiumBorder(),),
+          fixedSize: MaterialStateProperty.all(
+              Size(MediaQuery.of(context).size.width, 45.h)),
+          backgroundColor: MaterialStateProperty.all(Colors.white),
+          shadowColor: MaterialStateProperty.all(Colors.black),
+          elevation: MaterialStateProperty.all(0),
       ),
       onPressed: onPressed,
       child: Padding(

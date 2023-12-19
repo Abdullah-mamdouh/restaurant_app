@@ -145,13 +145,15 @@ class SignupPage extends StatelessWidget {
                 Padding(
                   padding:  EdgeInsets.symmetric(horizontal: 25.0.w),
                   child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        shape: const StadiumBorder(),
-                        fixedSize: Size(MediaQuery.of(context).size.width, 38.h),
-                        backgroundColor: Colors.white,
-                        shadowColor: Colors.black,
-                        elevation: 0,
-                        side: BorderSide(color: AppColor.orange)
+                    style: ButtonStyle(
+                        shape: MaterialStateProperty.all(const StadiumBorder(),),
+                        fixedSize: MaterialStateProperty.all(
+                            Size(MediaQuery.of(context).size.width, 38.h)),
+                        backgroundColor: MaterialStateProperty.all(Colors.white),
+                        shadowColor: MaterialStateProperty.all(Colors.black),
+                        elevation: MaterialStateProperty.all(0),
+                        side: MaterialStateProperty.all(BorderSide(
+                            color: AppColor.orange,))
                     ),
                     onPressed: (){},
                     child: Padding(
