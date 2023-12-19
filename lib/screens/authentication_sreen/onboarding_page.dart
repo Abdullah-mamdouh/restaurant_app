@@ -33,15 +33,16 @@ class OnBoarding extends StatelessWidget {
                             )),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: const StadiumBorder(),
-                              fixedSize:
-                                  Size(MediaQuery.of(context).size.width, 50),
-                              backgroundColor: Colors.white,
-                              shadowColor: Colors.black,
-                              elevation: 0,
-                              side: BorderSide(
-                                  color: AppColor.orange, width: 0.2)),
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all(const StadiumBorder()),
+                              fixedSize: MaterialStateProperty.all(
+                              Size(MediaQuery.of(context).size.width, 50)),
+                              backgroundColor: MaterialStateProperty.all(Colors.white),
+                              shadowColor: MaterialStateProperty.all(Colors.black),
+                              elevation: MaterialStateProperty.all(0),
+                              side: MaterialStateProperty.all(BorderSide(
+                                  color: AppColor.orange, width: 0.2))
+                          ),
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -170,14 +171,19 @@ class OnBoarding extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => SignupPage()),
                       );
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24),
-                          side: BorderSide(
-                            color: AppColor.orange,
-                          )),
-                      elevation: 0,
+                    style: ButtonStyle(
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(24),
+                            side: BorderSide(
+                              color: AppColor.orange,
+                            )),),
+                        fixedSize: MaterialStateProperty.all(
+                            Size(MediaQuery.of(context).size.width, 50)),
+                        backgroundColor: MaterialStateProperty.all(Colors.white),
+                        shadowColor: MaterialStateProperty.all(Colors.black),
+                        elevation: MaterialStateProperty.all(0),
+                        side: MaterialStateProperty.all(BorderSide(
+                            color: AppColor.orange, width: 0.2))
                     ),
                     child: Text(
                       'Sign Up',

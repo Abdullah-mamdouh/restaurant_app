@@ -28,16 +28,15 @@ class MainButton extends StatelessWidget {
       width: width,
       child: ElevatedButton(
         onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          foregroundColor: foregroundColor,
-          backgroundColor: backgroundColor,
-
-          shape: RoundedRectangleBorder(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all( RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24),
-           // side: BorderSide(color: color,)
+            // side: BorderSide(color: color,)
             //
-          ),
-          elevation: 0,
+          ),),
+
+          backgroundColor: MaterialStateProperty.all(backgroundColor),
+         foregroundColor:  MaterialStateProperty.all(foregroundColor),
         ),
         child: Text(text, style:style),
       ),
